@@ -1,0 +1,34 @@
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  main:
+    allow-circular-references: true
+  jpa:
+    generate-ddl: true
+  datasource:
+    hikari:
+      schema: app_schema
+      connection-init-sql: CREATE SCHEMA IF NOT EXISTS app_schema
+      connection-timeout: 10000
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/app_db
+
+book:
+  cache:
+    cache-names:
+      - findAllBooks
+      - findByBookId
+      - findAllByCategory
+      - findByAuthorAndName
+    caches:
+      findAllBooks:
+        expiry: 10s
+      findByBookId:
+        expiry: 10s
+      findAllByCategory:
+        expiry: 10s
+      findByAuthorAndName:
+        expiry: 10s
